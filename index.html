@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLab Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            width: 100%;
+        }
+        main {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+        section {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            width: 100%;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to PharmaLab Web App</h1>
+        <p>Planning and Management of Biomedical Unit and Biomedical Services for clients</p>
+    </header>
+    
+    <main>
+        <!-- PharmaLab User Login -->
+        <section>
+            <h2>PharmaLab User Login</h2>
+            <p>This section is designed for planning and management within the Biomedical Unit at PharmaLab Ltd.</p>
+            
+            <h3>Management</h3>
+            <ul>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeOAJi1F3O4Eem_7JjNJwQIN3SsskUi1ruSzNOQKaSorV1RTg/viewform?usp=header" target="_blank">Curative Maintenance Report</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdAU2f6Ub0S3E5kwnSbqqymc5X5_4G1xpFhpqEIFn8oyDHl5A/viewform?usp=header" target="_blank">Preventive Maintenance Report</a></li>
+            </ul>
+            
+            <h3>Planning</h3>
+            <ul>
+                <li><a href="https://docs.google.com/spreadsheets/d/1dY3AolzSAV4lh3fRhkr8bzMELgZf4dpmA-RnLPbS8ZE/edit?usp=sharing" target="_blank">Curative Maintenance Planning</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1xEehhWn-4DAvNVFKolGVLiCAFFO9aobUcCLyKvP5xgE/edit?usp=sharing" target="_blank">Preventive Maintenance Planning</a></li>
+            </ul>
+
+            <!-- Preventive Maintenance Calculation Tool -->
+            <div id="preventive-maintenance-calculator">
+                <h4>Preventive Maintenance Time Calculator</h4>
+                <form id="maintenanceForm">
+                    <div class="form-group">
+                        <label for="instruments">Number of Instruments (I):</label>
+                        <input type="number" id="instruments" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="engineers">Number of Engineers (E):</label>
+                        <input type="number" id="engineers" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
+                        <input type="number" id="rate_of_work" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
+                        <input type="number" id="restriction_days" required>
+                    </div>
+                    <button type="button" onclick="calculatePMP()">Calculate</button>
+                </form>
+                <div class="results" id="results"></div>
+
+                <script>
+                    function calculatePMP() {
+                        // Gather inputs
+                        const I = parseInt(document.getElementById('instruments').value);
+                        const E = parseInt(document.getElementById('engineers').value);
+                        const RW = parseInt(document.getElementById('rate_of_work').value);
+                        const RD = parseInt(document.getElementById('restriction_days').value);
+
+                        if (isNaN(I) || isNaN(E) || isNaN(RW) || isNaN(RD)) {
+                            alert("Please fill in all fields with valid numbers.");
+                            return;
+                        }
+
+                        // Step 1: Total Workdays Needed
+                        const TMC = RW * E;
+                        const TotalWorkdays = Math.ceil(I / TMC);
+
+                        // Step 2: Accounting for Weekends
+                        const workingDaysPerWeek = 7 - RD;
+                        const WeeksNeeded = Math.ceil(TotalWorkdays / workingDaysPerWeek);
+
+                        // Step 3: Total Calendar Days
+                        const PMPD = WeeksNeeded * 7;
+
+                        // Display results
+                        document.getElementById('results').innerHTML = `
+                            <h2>Results</h2>
+                            <p><strong>Total Maintenance Capacity (TMC):</strong> ${TMC}</p>
+                            <p><strong>Total Workdays Needed:</strong> ${TotalWorkdays}</p>
+                            <p><strong>Weeks Needed:</strong> ${WeeksNeeded}</p>
+                            <p><strong>Total Calendar Days (PMPD):</strong> ${PMPD}</p>
+                        `;
+                    }
+                </script>
+            </div>
+        </section>
+
+        <!-- Client User Login -->
+        <section>
+            <h2>Client User Login</h2>
+            <p>This section is designed for clients to request maintenance or reagents.</p>
+
+            <h3>Requests</h3>
+            <ul>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf3ydwLfst1-SE7U1d528vVLOUHXnjdnscq0IJiFiuoXELQ4w/viewform?usp=header" target="_blank">Maintenance Request</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf9mop4z59kFVFvHGNUfRZ5GVlJIasoepsij2OxwkyRNet9ZQ/viewform?usp=header" target="_blank">Reagent Request</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us: <a href="mailto:contact@pharmalab.com">pharmalabkgli@gmail.com and 0788301997</a></p>
+        <p>About PharmaLab Ltd: <a href="https://pharmalab.com/about" target="_blank">Learn More</a></p>
+        <p>Coordinated By : Directeur Commercial | R.Cyriacque </a></p>
+    </footer>
+</body>
+</html>
