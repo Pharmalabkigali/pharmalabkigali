@@ -1,196 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PharmaLab Web App</title>
-    <style>
-        .logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 60px; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-    z-index: 10; /* Ensure it's above other elements */
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PharmaLab Web App</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+      z-index: 10;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+    header {
+      background-color: #006400; /* dark green */
+      color: white;
+      text-align: center;
+      padding: 1.2rem 1rem 1.5rem;
+      position: relative;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+    header h1 {
+      margin: 0.5rem 0 0.3rem;
+      font-weight: 700;
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px #000;
+    }
+    header p {
+      margin: 0;
+      font-style: italic;
+      font-weight: 600;
+      color: #90ee90; /* light green */
+    }
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      padding: 0 1rem 2rem;
+      flex-wrap: wrap;
+    }
+    section {
+      background: #f9f9f9;
+      border: 2px solid #006400; /* dark green border */
+      border-radius: 10px;
+      width: 45%;
+      min-width: 320px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);
+    }
+    section h2 {
+      text-align: center;
+      color: #006400; /* dark green */
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      border-bottom: 3px solid #8b0000; /* dark red underline */
+      padding-bottom: 0.4rem;
+    }
+    section h3 {
+      color: #8b0000; /* dark red */
+      margin-top: 1rem;
+    }
+    section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    section ul li {
+      margin-bottom: 0.7rem;
+    }
+    a {
+      color: #006400; /* green links */
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #8b0000; /* red hover */
+      text-decoration: underline;
+    }
+    #preventive-maintenance-calculator {
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #006400;
+      box-shadow: 0 0 8px rgba(139, 0, 0, 0.2);
+    }
+    #preventive-maintenance-calculator h4 {
+      color: #8b0000;
+      margin-bottom: 12px;
+      text-align: center;
+      font-weight: 700;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #006400;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #8b0000;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #006400;
+    }
+    .results {
+      margin-top: 15px;
+      background-color: #e6ffe6;
+      border: 1px solid #006400;
+      border-radius: 6px;
+      padding: 10px;
+      color: #004d00;
+      font-weight: 700;
+    }
+    footer {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      margin-top: auto;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 5px rgba(255, 0, 0, 0.3);
+    }
+    footer a {
+      color: #90ee90; /* light green */
+      font-weight: 600;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #ff4d4d; /* light red */
+      text-decoration: underline;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-image: url('https://5.imimg.com/data5/SELLER/Default/2023/4/297855199/XP/GT/YR/159384256/66-1000x1000.jpg'); /* Replace with your image path */
-            background-size: cover; /* Ensures the image covers the entire background */
-            background-position: center; /* Centers the image */
-            background-attachment: fixed; /* Keeps the background static when scrolling */
-            color: #000; /* Ensure text is readable over the background */
-            text-shadow: none;
-        }
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1); /* Adjust the opacity as needed */
-            z-index: -1; /* Places it behind the content */
-        }
-        header {
-          position: flex; /* Keeps header fixed at the top */
-            top: 0; /* Anchored to the top */
-            left: 0;
-            width: 100%; /* Full page width */
-            background-color: #f4f4f4; /* Matching the current design */
-            padding: 3px 20px;
-            text-align: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for better visual appearance */
-            z-index: 0; /* Ensures header appears above other content */
-        }
-        main {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-top: 20px;
-        }
-        section {
-            width: 45%;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.8); /* Makes the section background slightly transparent */
-        }
-        h2 {
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 10px;
-            background-color: #f4f4f4;
-            width: 100%;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        align-items: center;
+      }
+      section {
+        width: 90%;
+        max-width: 600px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046" alt="PharmaLab Logo" class="logo">
-        <h1>Welcome to PharmaLab Biomedical services</h1>
-        <p>Planning and Management for optimization of health care </p>
-    </header>
-    
-    <main>
-        <!-- PharmaLab User Login -->
-        <section>
-            <h2>PharmaLab User Login</h2>
-            <p>This section is designed for planning and management within the Biomedical Unit at PharmaLab Ltd.</p>
-            
-            <h3>Management</h3>
-            <ul>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeOAJi1F3O4Eem_7JjNJwQIN3SsskUi1ruSzNOQKaSorV1RTg/viewform?usp=header" target="_blank">CLICK HERE for CURATIRVE MAINTENANCE REPORT</a></li>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdAU2f6Ub0S3E5kwnSbqqymc5X5_4G1xpFhpqEIFn8oyDHl5A/viewform?usp=header" target="_blank">CLICK HERE for PRERVENTIRVE MAINTENANCE REPORT</a></li>
-            </ul>
-            <ul>
-                 <li><a href="https://docs.google.com/spreadsheets/d/1lRmQZTi5aW8oxHp0n4_BmjMHUuBYf6ZbuGPpwludMGU/edit?gid=561808911#gid=561808911" target="_blank">CLICK HERE TO FILL TRANSPORT COST for PM </a></li>
-                 <li><a href="https://docs.google.com/spreadsheets/d/1Lpb03ypeXOgq9pOp3RBF34ey5Src3GsN3AhLELhFrn4/edit?usp=sharing" target="_blank">CLICK HERE TO FILL PROBLEMS OF INSTRUMENTS WHICH DIDN'T WORK AND NUMBER OF FORMS SUBMITTED in PM </a></li>
-            </ul>   
-          
+  <header>
+    <img
+      src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
+      alt="PharmaLab Logo"
+      class="logo"
+    />
+    <h1>Welcome to PharmaLab Biomedical Services</h1>
+    <p>Planning and Management for Optimization of Health Care</p>
+  </header>
 
-            
-            <h3>Planning</h3>
-            <ul>
-                <li><a href="https://docs.google.com/spreadsheets/d/1dY3AolzSAV4lh3fRhkr8bzMELgZf4dpmA-RnLPbS8ZE/edit?usp=sharing" target="_blank">Curative Maintenance Planning</a></li>
-                <li><a href="https://docs.google.com/spreadsheets/d/1xEehhWn-4DAvNVFKolGVLiCAFFO9aobUcCLyKvP5xgE/edit?usp=sharing" target="_blank">Preventive Maintenance Planning</a></li>
-            </ul>
+  <main>
+    <!-- PharmaLab User Login -->
+    <section>
+      <h2>PharmaLab User Login</h2>
+      <p>
+        This section is designed for planning and management within the
+        Biomedical Unit at PharmaLab Ltd.
+      </p>
 
+      <h3>Management</h3>
+      <ul>
+        <li>
+          <a
+            href="https://docs.google.com/spreadsheets/d/1BfAwGJEu-W2h5djjOW3v7uSfeKPZ-HbI4T5KB1OJptU/edit?usp=sharing"
+            target="_blank"
+            >Stock Management and Report</a
+         >
+       </li>
+     </ul>
+     <ul>
+        <li>
+          <a
+            href="https://forms.gle/KJeXAWsqusMNdTR89"
+            target="_blank"
+            >Curative Maintenance Report</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://forms.gle/1gvaqeCh6Ynt119Z7"
+            target="_blank"
+            >Preventive Maintenance Report</a
+          >
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a
+            href="https://docs.google.com/spreadsheets/d/1vTocVwz9dUOmANwk73E1sUEDNcGAeswBsKrP_5eLxIE/edit?usp=sharing"
+            target="_blank"
+            >Transport Cost for PM</a
+          >
+        </li>
+      </ul>
 
-            <!-- Preventive Maintenance Calculation Tool -->
-            <div id="preventive-maintenance-calculator">
-                <h4>Preventive Maintenance Time Calculator</h4>
-                <form id="maintenanceForm">
-                    <div class="form-group">
-                        <label for="instruments">Number of Instruments (I):</label>
-                        <input type="number" id="instruments" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="engineers">Number of Engineers (E):</label>
-                        <input type="number" id="engineers" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
-                        <input type="number" id="rate_of_work" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
-                        <input type="number" id="restriction_days" required>
-                    </div>
-                    <button type="button" onclick="calculatePMP()">Calculate</button>
-                </form>
-                <div class="results" id="results"></div>
+      <h3>Planning</h3>
+      <ul>
+       <li>
+          <a
+            href="https://rwanda-bus-tickets-prices.streamlit.app/"
+            target="_blank"
+            >Transport in Rwanda Bus Tickets Prices Explorer by RURA</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://forms.gle/sMLcSVYtSUUjKndWA"
+            target="_blank"
+            >Curative Maintenance Mission Form</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://forms.gle/KaxqWa7rVRL2axHw5"
+            target="_blank"
+            >Preventive Maintenance Mission Form</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://docs.google.com/spreadsheets/d/1egrQ8jUXRhlF4wolGU6jfwaAzk4xyEhWKXkKD_M3-w8/edit?usp=sharing"
+            target="_blank"
+            <strong style="color: red;"> TOTAL MISSION COST</strong>
 
-                <script>
-                    function calculatePMP() {
-                        // Gather inputs
-                        const I = parseInt(document.getElementById('instruments').value);
-                        const E = parseInt(document.getElementById('engineers').value);
-                        const RW = parseInt(document.getElementById('rate_of_work').value);
-                        const RD = parseInt(document.getElementById('restriction_days').value);
+          >
+        </li>
+      </ul>
 
-                        if (isNaN(I) || isNaN(E) || isNaN(RW) || isNaN(RD)) {
-                            alert("Please fill in all fields with valid numbers.");
-                            return;
-                        }
+      <!-- Preventive Maintenance Calculation Tool -->
+<div id="preventive-maintenance-calculator">
+  <h4>Preventive Maintenance Duration Calculator</h4>
+  <form id="maintenanceForm" onsubmit="return false;">
+    <div class="form-group">
+      <label for="instruments">Number of Instruments (I):</label>
+      <input type="number" id="instruments" required>
+    </div>
+    <div class="form-group">
+      <label for="engineers">Number of Engineers (E):</label>
+      <input type="number" id="engineers" required>
+    </div>
+    <div class="form-group">
+      <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
+      <input type="number" id="rate_of_work" required>
+    </div>
+    <div class="form-group">
+      <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
+      <input type="number" id="restriction_days" required>
+    </div>
+    <button type="button" onclick="calculatePMP()">Calculate</button>
+  </form>
+  <div class="results" id="results" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 5px;"></div>
+</div>
 
-                        // Step 1: Total Workdays Needed
-                        const TMC = RW * E;
-                        const TotalWorkdays = Math.ceil(I / TMC);
+<script>
+  function calculatePMP() {
+    const I = parseInt(document.getElementById('instruments').value);
+    const E = parseInt(document.getElementById('engineers').value);
+    const RW = parseInt(document.getElementById('rate_of_work').value);
+    const RD = parseInt(document.getElementById('restriction_days').value);
 
-                        // Step 2: Accounting for Weekends
-                        const workingDaysPerWeek = 7 - RD;
-                        const WeeksNeeded = Math.ceil(TotalWorkdays / workingDaysPerWeek);
+    if (isNaN(I) || isNaN(E) || isNaN(RW) || isNaN(RD)) {
+      alert("Please fill in all fields with valid numbers.");
+      return;
+    }
 
-                        // Step 3: Total Calendar Days
-                        const PMPD = WeeksNeeded * 7;
+    const TMC = RW * E;
+    const TotalWorkdays = Math.ceil(I / TMC);
+    const workingDaysPerWeek = 7 - RD;
+    const WeeksNeeded = Math.ceil(TotalWorkdays / workingDaysPerWeek);
+    const PMPD = WeeksNeeded * 7;
 
-                        // Display results
-                        document.getElementById('results').innerHTML = `
-                            <h2>Results</h2>
-                            <p><strong>Total Maintenance Capacity (TMC):</strong> ${TMC}</p>
-                            <p><strong>Total Workdays Needed:</strong> ${TotalWorkdays}</p>
-                            <p><strong>Weeks Needed:</strong> ${WeeksNeeded}</p>
-                            <p><strong>Total Calendar Days (PMPD):</strong> ${PMPD}</p>
-                        `;
-                    }
-                </script>
-            </div>
-        </section>
+    document.getElementById('results').innerHTML = `
+      <h3>Results</h3>
+      <p><strong>Total Maintenance Capacity (TMC):</strong> ${TMC}</p>
+      <p><strong>Total Workdays Needed:</strong> ${TotalWorkdays}</p>
+      <p><strong>Weeks Needed:</strong> ${WeeksNeeded}</p>
+      <p><strong>Total Calendar Days (PMPD):</strong> ${PMPD}</p>
+    `;
+  }
+</script>
 
-        <!-- Client User Login -->
-        <section>
-            <h2>Client User Login</h2>
-            <p>This section is designed for clients to request maintenance or reagents.</p>
+    </section>
 
-            <h3>Requests</h3>
-            <ul>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf3ydwLfst1-SE7U1d528vVLOUHXnjdnscq0IJiFiuoXELQ4w/viewform?usp=header" target="_blank">Maintenance Request</a></li>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf9mop4z59kFVFvHGNUfRZ5GVlJIasoepsij2OxwkyRNet9ZQ/viewform?usp=header" target="_blank">Reagent Request</a></li>
-            </ul>
-        </section>
-    </main>
+    <!-- Client User Login -->
+    <section>
+      <h2>Client User Login</h2>
+      <p>This section is designed for clients to request maintenance or reagents.</p>
 
-    <footer>
-        <p>Contact us: <a href="mailto:contact@pharmalab.com">pharmalabkgli@gmail.com | Phone: 0788301997 or 0786854200 </a></p>
-        <p>About PharmaLab Ltd: <a href="https://pharmalabrwanda.com//about" target="_blank">Learn More</a></p>
-       
-    </footer>
-</body>
-</html>
+      <h3>Requests</h3>
+      <ul>
+        <li>
+          <a
+            href="https://forms.gle/UCDRiDoQEpGMmGKdA"
+            target="_blank"
+            >Maintenance Request</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://forms.gle/5ULMTBXxvFugLjG2A"
+            target="_blank"
+            >Reagent Request</a
+          >
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Contact us:
+      <a href="mailto:contact@pharmalab.com"
+        >pharmalabkgli@gmail.com | Phone: 0788301997
