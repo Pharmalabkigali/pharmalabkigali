@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PharmaLab Web App</title>
   <style>
-    /* Reset and base */
     * {
       box-sizing: border-box;
     }
@@ -20,36 +19,51 @@
       min-height: 100vh;
       position: relative;
     }
-    .logo {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 60px;
-      height: auto;
-      z-index: 10;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
     header {
-      background-color: #006400; /* dark green */
+      background-color: #006400;
       color: white;
       text-align: center;
-      padding: 1.2rem 1rem 1.5rem;
+      padding: 2rem 1rem 1.5rem;
       position: relative;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
       margin-bottom: 20px;
+    }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .logo {
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  padding: 5px;
+  filter: brightness(1.3) drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+   }
+
+  .logo:hover {
+  transform: scale(1.05);
+  }
+
     }
     header h1 {
       margin: 0.5rem 0 0.3rem;
       font-weight: 700;
       font-size: 2rem;
       text-shadow: 1px 1px 2px #000;
+      background-color: #008000;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
     }
     header p {
       margin: 0;
       font-style: italic;
       font-weight: 600;
-      color: #90ee90; /* light green */
+      color: #90ee90;
     }
     main {
       flex: 1;
@@ -61,7 +75,7 @@
     }
     section {
       background: #f9f9f9;
-      border: 2px solid #006400; /* dark green border */
+      border: 2px solid #006400;
       border-radius: 10px;
       width: 45%;
       min-width: 320px;
@@ -70,15 +84,15 @@
     }
     section h2 {
       text-align: center;
-      color: #006400; /* dark green */
+      color: #006400;
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      border-bottom: 3px solid #8b0000; /* dark red underline */
+      border-bottom: 3px solid #8b0000;
       padding-bottom: 0.4rem;
     }
     section h3 {
-      color: #8b0000; /* dark red */
+      color: #8b0000;
       margin-top: 1rem;
     }
     section ul {
@@ -89,13 +103,13 @@
       margin-bottom: 0.7rem;
     }
     a {
-      color: #006400; /* green links */
+      color: #006400;
       font-weight: 600;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     a:hover {
-      color: #8b0000; /* red hover */
+      color: #8b0000;
       text-decoration: underline;
     }
     #preventive-maintenance-calculator {
@@ -163,16 +177,15 @@
       box-shadow: 0 -2px 5px rgba(255, 0, 0, 0.3);
     }
     footer a {
-      color: #90ee90; /* light green */
+      color: #90ee90;
       font-weight: 600;
       text-decoration: none;
     }
     footer a:hover {
-      color: #ff4d4d; /* light red */
+      color: #ff4d4d;
       text-decoration: underline;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       main {
         flex-direction: column;
@@ -187,16 +200,18 @@
 </head>
 <body>
   <header>
-    <img
-      src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
-      alt="PharmaLab Logo"
-      class="logo"
-    />
+    <div class="logo-container">
+      <img
+        src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
+        alt="PharmaLab Logo"
+        class="logo"
+      />
+    </div>
     <h1>Welcome to PharmaLab Biomedical Services</h1>
     <p>Planning and Management for Optimization of Health Care</p>
   </header>
 
-  <main>
+   <main>
     <!-- PharmaLab User Login -->
     <section>
       <h2>PharmaLab User Login</h2>
@@ -361,7 +376,11 @@
   </main>
 
   <footer>
-    <p>
-      Contact us:
-      <a href="mailto:contact@pharmalab.com"
-        >pharmalabkgli@gmail.com | Phone: 0788301997
+    <p>Contact us:</p>
+    <p><a href="www.pharmalabrwanda.com"
+        >www.pharmalabrwanda.com </a </p> 
+      
+    <p>  Email: pharmalabkgli@gmail.com </p>
+    <p>  Phone: +250788477537;+250788301997</p>
+    <p>P.O BOX 2564 KIGALI-RWANDA</p>
+    <p>HEAD OFFICES ADDRESS | NYARUGENGE,ST: KN 59, No 24</p>
