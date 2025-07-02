@@ -413,16 +413,22 @@
 <!-- AI Assistant for Engineers -->
 <section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
   <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
-    ARTIFICIAL INTELLIGENCE Assistant For BIOMEDICAL MAINTENANCE for Humacount5 and Humalyzer3500
+    ARTIFICIAL INTELLIGENCE Assistant For BIOMEDICAL MAINTENANCE of Hematology and Biochemistry Instruments
   </h2>
   <div style="display: flex; flex-direction: column; gap: 10px;">
-    <label for="ai_instrument">Instrument Name (e.g., humacount5)</label>
-    <input id="ai_instrument" type="text" placeholder="Enter instrument name..." style="padding: 10px; border: 1px solid #006400; border-radius: 6px;">
+    <label for="ai_instrument">Select Instrument</label>
+    <select id="ai_instrument" style="padding: 10px; border: 1px solid #006400; border-radius: 6px;">
+      <option value="">-- Choose Instrument --</option>
+      <option value="humacount5">Humacount 5</option>
+      <option value="humalyzer3500">Humalyzer 3500</option>
+    </select>
 
     <label for="ai_question">Your Question</label>
     <textarea id="ai_question" rows="4" placeholder="What do you want to know?" style="padding: 10px; border: 1px solid #006400; border-radius: 6px;"></textarea>
 
-    <button onclick="askAssistant()">Ask Assistant</button>
+    <button onclick="askAssistant()" style="background-color: #8b0000; color: white; font-weight: bold; padding: 10px; border: none; border-radius: 6px; cursor: pointer;">
+      Ask Assistant
+    </button>
 
     <div id="ai_answer" style="white-space: pre-wrap; background: #eaffea; border: 1px solid #006400; border-radius: 6px; padding: 10px; min-height: 60px; margin-top: 10px;">
       <!-- AI response will appear here -->
@@ -437,7 +443,7 @@ async function askAssistant() {
   const answerBox = document.getElementById("ai_answer");
 
   if (!instrument || !question) {
-    alert("Please fill in both the instrument name and your question.");
+    alert("Please select an instrument and type your question.");
     return;
   }
 
