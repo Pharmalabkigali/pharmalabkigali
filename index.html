@@ -21,8 +21,9 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       text-align: center;
+      width: 300px;
     }
-    input[type="password"] {
+    select, input[type="password"] {
       padding: 10px;
       width: 100%;
       margin-bottom: 15px;
@@ -46,6 +47,11 @@
 <body>
   <div class="login-box">
     <h2>PharmaLab Web App Login</h2>
+    <select id="userRole">
+      <option value="">Select user role</option>
+      <option value="PharmaLab">PharmaLab User</option>
+      <option value="Client">Client User</option>
+    </select>
     <input type="password" id="accessCode" placeholder="Enter access code...">
     <button onclick="checkLogin()">Login</button>
   </div>
@@ -53,14 +59,16 @@
   <script>
     function checkLogin() {
       const code = document.getElementById("accessCode").value;
-      if (code === "PL2025") {
+      const role = document.getElementById("userRole").value;
+
+      if (role === "PharmaLab" && code === "PL2025") {
         localStorage.setItem("role", "PharmaLab");
         window.location.href = "pharmalab.html";
-      } else if (code === "CL2025") {
+      } else if (role === "Client" && code === "CL2025") {
         localStorage.setItem("role", "Client");
         window.location.href = "client.html";
       } else {
-        alert("Invalid access code");
+        alert("Invalid role or access code");
       }
     }
   </script>
