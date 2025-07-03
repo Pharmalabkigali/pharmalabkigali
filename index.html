@@ -215,4 +215,40 @@
       if (role === "PharmaLab" && code === "PL2025") {
         localStorage.setItem("role", "PharmaLab");
         window.location.href = "pharmalab.html";
-      } else if (role === "Client
+      } else if (role === "Client" && code === "CL2025") {
+        localStorage.setItem("role", "Client");
+        window.location.href = "client.html";
+      } else {
+        alert("Invalid role or access code");
+      }
+    }
+
+    function changeLanguage() {
+      const lang = document.getElementById("langSelect").value;
+      const title = document.getElementById("loginTitle");
+      const roleSelect = document.getElementById("userRole");
+      const passInput = document.getElementById("accessCode");
+
+      if (lang === "fr") {
+        title.textContent = "Connexion à l'application PharmaLab";
+        roleSelect.options[0].text = "Sélectionnez le rôle";
+        roleSelect.options[1].text = "Le Personnel de PharmaLab";
+        roleSelect.options[2].text = "Le Client de PharmaLab";
+        passInput.placeholder = "Entrez le code d'accès...";
+      } else if (lang === "rw") {
+        title.textContent = "Injira kuri App ya PharmaLab";
+        roleSelect.options[0].text = "Hitamo uruhare rwawe";
+        roleSelect.options[1].text = "Umukozi wa PharmaLab";
+        roleSelect.options[2].text = "Umukiriya wa PharmaLab";
+        passInput.placeholder = "Andika ijambo ry'ibanga...";
+      } else {
+        title.textContent = "PharmaLab Web App Login";
+        roleSelect.options[0].text = "Select user role";
+        roleSelect.options[1].text = "PharmaLab Staff";
+        roleSelect.options[2].text = "PharmaLab Client";
+        passInput.placeholder = "Enter access code...";
+      }
+    }
+  </script>
+</body>
+</html>
