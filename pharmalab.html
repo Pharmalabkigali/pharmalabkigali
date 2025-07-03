@@ -214,37 +214,51 @@
         </li>
       </ul>
 </section>
-<section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
+<!-- TOGGLE BUTTON -->
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="toggleSection()" style="background-color: #8b0000; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+    Show/Hide Preventive Maintenance Calculator
+  </button>
+</div>
+
+<!-- HIDDEN SECTION -->
+<section id="pmSection" style="display: none; width: 90%; margin: 2rem auto; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
   <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
     Preventive Maintenance Calculation Duration Tool
   </h2>
 
-      <!-- Preventive Maintenance Calculation Tool -->
-<div id="preventive-maintenance-calculator">
-  <h4>Preventive Maintenance Duration Calculator</h4>
-  <form id="maintenanceForm" onsubmit="return false;">
-    <div class="form-group">
-      <label for="instruments">Number of Instruments (I):</label>
-      <input type="number" id="instruments" required>
-    </div>
-    <div class="form-group">
-      <label for="engineers">Number of Engineers (E):</label>
-      <input type="number" id="engineers" required>
-    </div>
-    <div class="form-group">
-      <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
-      <input type="number" id="rate_of_work" required>
-    </div>
-    <div class="form-group">
-      <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
-      <input type="number" id="restriction_days" required>
-    </div>
-    <button type="button" onclick="calculatePMP()">Calculate</button>
-  </form>
-  <div class="results" id="results" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 5px;"></div>
-</div>
+  <div id="preventive-maintenance-calculator">
+    <h4>Preventive Maintenance Duration Calculator</h4>
+    <form id="maintenanceForm" onsubmit="return false;">
+      <div class="form-group">
+        <label for="instruments">Number of Instruments (I):</label>
+        <input type="number" id="instruments" required>
+      </div>
+      <div class="form-group">
+        <label for="engineers">Number of Engineers (E):</label>
+        <input type="number" id="engineers" required>
+      </div>
+      <div class="form-group">
+        <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
+        <input type="number" id="rate_of_work" required>
+      </div>
+      <div class="form-group">
+        <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
+        <input type="number" id="restriction_days" required>
+      </div>
+      <button type="button" onclick="calculatePMP()">Calculate</button>
+    </form>
+    <div class="results" id="results" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 5px;"></div>
+  </div>
+</section>
 
+<!-- TOGGLE SCRIPT AND CALCULATION SCRIPT-->
 <script>
+  function toggleSection() {
+    const section = document.getElementById('pmSection');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  }
+
   function calculatePMP() {
     const I = parseInt(document.getElementById('instruments').value);
     const E = parseInt(document.getElementById('engineers').value);
@@ -272,7 +286,6 @@
   }
 </script>
 
-    </section>
     <!-- AI Assistant for Engineers -->
 <section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
   <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
