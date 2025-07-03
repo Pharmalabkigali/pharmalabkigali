@@ -203,25 +203,43 @@
   </footer>
 
   <script>
-    function checkLogin() {
-      const code = document.getElementById("accessCode").value;
-      const role = document.getElementById("userRole").value;
+  async function checkLogin() {
+    const code = document.getElementById("accessCode").value;
+    const role = document.getElementById("userRole").value;
 
-      if (!role || !code) {
-        alert("Please select a role and enter the access code.");
-        return;
-      }
+    if (!role || !code) {
+      alert("Please select a role and enter the access code.");
+      return;
+    }
 
-      if (role === "PharmaLab" && code === "PL2025") {
+    try {
+      const response = await fetch("https://ai-tzvu.onrender.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          role: role,
+          code: code
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.role === "pharmalab") {
         localStorage.setItem("role", "PharmaLab");
         window.location.href = "pharmalab.html";
-      } else if (role === "Client" && code === "CL2025") {
+      } else if (data.role === "client") {
         localStorage.setItem("role", "Client");
         window.location.href = "client.html";
       } else {
-        alert("Invalid role or access code");
+        alert("❌ " + (data.error || "Invalid login credentials"));
       }
+    } catch (err) {
+      alert("❌ Failed to connect to server.");
+      console.error(err);
     }
+  }
 
     function changeLanguage() {
       const lang = document.getElementById("langSelect").value;
