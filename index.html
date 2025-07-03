@@ -3,25 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>PharmaLab App</title>
+  <title>PharmaLab Login</title>
   <style>
+    :root {
+      --green: #006400;
+      --red: #8B0000;
+      --black: #000000;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       height: 100vh;
-      background: linear-gradient(270deg, #006400, #90ee90);
+      background: linear-gradient(135deg, var(--green), #f0fff0);
       background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
+      animation: backgroundShift 20s ease infinite;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-    @keyframes gradientMove {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    @keyframes backgroundShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .login-box {
@@ -30,9 +34,10 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0, 100, 0, 0.4);
       text-align: center;
-      width: 320px;
+      width: 340px;
       position: relative;
       z-index: 2;
+      border: 2px solid var(--green);
     }
 
     .logo-container {
@@ -43,113 +48,91 @@
 
     .logo {
       width: 180px;
-      height: auto;
       border-radius: 10px;
+      padding: 6px;
       background-color: white;
-      padding: 5px;
-      animation: floatLogo 3s ease-in-out infinite;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    @keyframes floatLogo {
+    @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
 
     h2 {
+      color: var(--black);
       margin-bottom: 20px;
-      color: #006400;
+      font-weight: bold;
     }
 
-    /* ✅ Stylish dropdowns */
-    select {
-  padding: 12px;
-  width: 100%;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  appearance: none;
-  background-color: #f5f5f5;
-  color: #333;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23006400' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position-x: 95%;
-  background-position-y: center;
-  background-size: 16px;
-  cursor: pointer;
-}
-
-select:focus {
-  outline: none;
-  border-color: #006400;
-  box-shadow: 0 0 5px rgba(0, 100, 0, 0.5);
-}
-
-/* ✅ Make font size responsive */
-@media (max-width: 480px) {
-  select,
-  input[type="password"],
-  button {
-    font-size: 1rem;
-    padding: 14px;
-  }
-
-  .login-box {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .logo {
-    width: 140px;
-  }
-}
-
-
-    input[type="password"] {
+    select, input[type="password"] {
       padding: 10px;
       width: 100%;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
+      border: 1.5px solid var(--red);
       border-radius: 6px;
       font-size: 1rem;
+      background: #fffafa;
+      color: var(--black);
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    select:focus, input[type="password"]:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 5px var(--green);
+      outline: none;
     }
 
     button {
-      background-color: #006400;
+      background-color: var(--red);
       color: white;
       border: none;
-      padding: 10px;
+      padding: 12px;
       width: 100%;
       border-radius: 6px;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #004d00;
+      background-color: var(--green);
     }
 
     .language-select {
       margin-top: 10px;
       font-size: 0.9rem;
+      color: var(--black);
+    }
+
+    .language-select select {
+      border-color: var(--green);
+      background: #f5fff5;
     }
 
     .footer {
-      margin-top: auto;
-      background-color: rgba(255, 255, 255, 0.8);
+      margin-top: 20px;
+      background-color: var(--black);
+      color: white;
       width: 100%;
       text-align: center;
       padding: 15px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      border-top: 3px solid var(--red);
       position: absolute;
       bottom: 0;
     }
 
     .footer a {
-      color: #006400;
+      color: #90ee90;
       text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: var(--red);
     }
   </style>
 </head>
@@ -162,12 +145,14 @@ select:focus {
         class="logo"
       />
     </div>
-    <h2 id="loginTitle">PharmaLab App</h2>
+    <h2 id="loginTitle">PharmaLab Web App Login</h2>
+
     <select id="userRole">
       <option value="">Select user role</option>
-      <option value="PharmaLab">PharmaLab Staff User</option>
+      <option value="PharmaLab">PharmaLab User</option>
       <option value="Client">Client User</option>
     </select>
+
     <input type="password" id="accessCode" placeholder="Enter access code...">
     <button onclick="checkLogin()">Login</button>
 
@@ -183,13 +168,19 @@ select:focus {
 
   <div class="footer">
     📧 Email: <a href="mailto:pharmalabkgli@gmail.com">pharmalabkgli@gmail.com</a> |
-    ☎️ Tel: +250 788 301 997 / +250 788 477 537 / +250 788 566 459 / +250 786 854 200 
+    ☎️ Tel: +250 788 301 997 / +250 788 477 537 / +250 786 854 200 |
+    🏢 HQ: NYARUGENGE, ST: KN 59, No 24, Kigali, Rwanda
   </div>
 
   <script>
     function checkLogin() {
       const code = document.getElementById("accessCode").value;
       const role = document.getElementById("userRole").value;
+
+      if (!role || !code) {
+        alert("Please select a role and enter the access code.");
+        return;
+      }
 
       if (role === "PharmaLab" && code === "PL2025") {
         localStorage.setItem("role", "PharmaLab");
