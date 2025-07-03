@@ -1,480 +1,68 @@
+<!-- index.html (Login Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PharmaLab Web App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmaLab Login</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-      color: black;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      position: relative;
-    }
-    header {
-      background-color: #006400;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem 1.5rem;
-      position: relative;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-      margin-bottom: 20px;
-    }
-    .logo-container {
       display: flex;
       justify-content: center;
-      margin-bottom: 1rem;
-    }
-    .logo {
-  width: 200px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  background-color: white;
-  padding: 5px;
-  filter: brightness(1.3) drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
-  transition: transform 0.3s ease;
-   }
-
-  .logo:hover {
-  transform: scale(1.05);
-  }
-
-    }
-    header h1 {
-      margin: 0.5rem 0 0.3rem;
-      font-weight: 700;
-      font-size: 2rem;
-      text-shadow: 1px 1px 2px #000;
-      background-color: #008000;
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-    }
-    header p {
+      align-items: center;
+      height: 100vh;
       margin: 0;
-      font-style: italic;
-      font-weight: 600;
-      color: #90ee90;
+      background: #f0f8ff;
     }
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: space-around;
-      gap: 20px;
-      padding: 0 1rem 2rem;
-      flex-wrap: wrap;
-    }
-    section {
-      background: #f9f9f9;
-      border: 2px solid #006400;
-      border-radius: 10px;
-      width: 45%;
-      min-width: 320px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);
-    }
-    section h2 {
-      text-align: center;
-      color: #006400;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      border-bottom: 3px solid #8b0000;
-      padding-bottom: 0.4rem;
-    }
-    section h3 {
-      color: #8b0000;
-      margin-top: 1rem;
-    }
-    section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    section ul li {
-      margin-bottom: 0.7rem;
-    }
-    a {
-      color: #006400;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #8b0000;
-      text-decoration: underline;
-    }
-    #preventive-maintenance-calculator {
-      margin-top: 20px;
+    .login-box {
       background: white;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #006400;
-      box-shadow: 0 0 8px rgba(139, 0, 0, 0.2);
-    }
-    #preventive-maintenance-calculator h4 {
-      color: #8b0000;
-      margin-bottom: 12px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       text-align: center;
-      font-weight: 700;
     }
-    .form-group {
-      margin-bottom: 10px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-      color: #006400;
-    }
-    input[type="number"] {
+    input[type="password"] {
+      padding: 10px;
       width: 100%;
-      padding: 7px 10px;
-      border: 1px solid #8b0000;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 1rem;
     }
     button {
-      background-color: #8b0000;
+      padding: 10px 20px;
+      background-color: #006400;
       color: white;
       border: none;
-      padding: 10px 15px;
-      font-size: 1rem;
-      font-weight: 700;
       border-radius: 5px;
       cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
+      font-weight: bold;
     }
     button:hover {
-      background-color: #006400;
-    }
-    .results {
-      margin-top: 15px;
-      background-color: #e6ffe6;
-      border: 1px solid #006400;
-      border-radius: 6px;
-      padding: 10px;
-      color: #004d00;
-      font-weight: 700;
-    }
-    footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 15px 10px;
-      margin-top: auto;
-      font-size: 0.9rem;
-      box-shadow: 0 -2px 5px rgba(255, 0, 0, 0.3);
-    }
-    footer a {
-      color: #90ee90;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: #ff4d4d;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 900px) {
-      main {
-        flex-direction: column;
-        align-items: center;
-      }
-      section {
-        width: 90%;
-        max-width: 600px;
-      }
+      background-color: #004d00;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img
-        src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
-        alt="PharmaLab Logo"
-        class="logo"
-      />
-    </div>
-    <h1>Welcome to PharmaLab Biomedical Services</h1>
-    <p>Planning and Management for Optimization of Health Care</p>
-  </header>
+  <div class="login-box">
+    <h2>PharmaLab Web App Login</h2>
+    <input type="password" id="accessCode" placeholder="Enter access code...">
+    <button onclick="checkLogin()">Login</button>
+  </div>
 
-   <main>
-    <!-- PharmaLab User Login -->
-    <section>
-      <h2>PharmaLab User Login</h2>
-      <p>
-        This section is designed for planning and management within the
-        Biomedical Unit at PharmaLab Ltd.
-      </p>
-
-      <h3>Management</h3>
-      <ul>
-        <li>
-          <a
-            href="https://docs.google.com/spreadsheets/d/1BfAwGJEu-W2h5djjOW3v7uSfeKPZ-HbI4T5KB1OJptU/edit?usp=sharing"
-            target="_blank"
-            >Stock Management and Report</a
-         >
-       </li>
-     </ul>
-     <ul>
-        <li>
-          <a
-            href="https://forms.gle/KJeXAWsqusMNdTR89"
-            target="_blank"
-            >Curative Maintenance Report</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://forms.gle/1gvaqeCh6Ynt119Z7"
-            target="_blank"
-            >Preventive Maintenance Report</a
-          >
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <a
-            href="https://docs.google.com/spreadsheets/d/1vTocVwz9dUOmANwk73E1sUEDNcGAeswBsKrP_5eLxIE/edit?usp=sharing"
-            target="_blank"
-            >Transport Cost for PM</a
-          >
-        </li>
-      </ul>
-
-      <h3>Planning</h3>
-      <ul>
-       <li>
-          <a
-            href="https://rwanda-bus-tickets-prices.streamlit.app/"
-            target="_blank"
-            >Transport in Rwanda Bus Tickets Prices Explorer by RURA</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://forms.gle/sMLcSVYtSUUjKndWA"
-            target="_blank"
-            >Curative Maintenance Mission Form</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://forms.gle/KaxqWa7rVRL2axHw5"
-            target="_blank"
-            >Preventive Maintenance Mission Form</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://docs.google.com/spreadsheets/d/156zgyXZU8PsMVgAxNDY87f_LwNnJFlwqJsLpiS3WPIc/edit?usp=sharing"
-            target="_blank"
-            >Preventive Maintenance plan (9th-26th)June 2025</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://docs.google.com/spreadsheets/d/1egrQ8jUXRhlF4wolGU6jfwaAzk4xyEhWKXkKD_M3-w8/edit?usp=sharing"
-            target="_blank"
-            ><b style="color: blue;"> TOTAL MISSION COST</b></a
-          >
-        </li>
-        <li>
-          <a
-            href="https://docs.google.com/spreadsheets/d/1pfXkPTe_p18oG0tOy6Xu7_oLQbsRUjNX3DCQOTZN73A/edit?usp=sharing"
-            target="_blank"
-            ><b style="color: red;"> INVOICE FOR PHASE 2 JUNE/2025 (now in process) </b></a
-          >
-        </li>
-      </ul>
-
-      <!-- Preventive Maintenance Calculation Tool -->
-<div id="preventive-maintenance-calculator">
-  <h4>Preventive Maintenance Duration Calculator</h4>
-  <form id="maintenanceForm" onsubmit="return false;">
-    <div class="form-group">
-      <label for="instruments">Number of Instruments (I):</label>
-      <input type="number" id="instruments" required>
-    </div>
-    <div class="form-group">
-      <label for="engineers">Number of Engineers (E):</label>
-      <input type="number" id="engineers" required>
-    </div>
-    <div class="form-group">
-      <label for="rate_of_work">Rate of Work (RW - Instruments per Day per Engineer):</label>
-      <input type="number" id="rate_of_work" required>
-    </div>
-    <div class="form-group">
-      <label for="restriction_days">Restriction Days (RD - Days Excluded per Week):</label>
-      <input type="number" id="restriction_days" required>
-    </div>
-    <button type="button" onclick="calculatePMP()">Calculate</button>
-  </form>
-  <div class="results" id="results" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 5px;"></div>
-</div>
-
-<script>
-  function calculatePMP() {
-    const I = parseInt(document.getElementById('instruments').value);
-    const E = parseInt(document.getElementById('engineers').value);
-    const RW = parseInt(document.getElementById('rate_of_work').value);
-    const RD = parseInt(document.getElementById('restriction_days').value);
-
-    if (isNaN(I) || isNaN(E) || isNaN(RW) || isNaN(RD)) {
-      alert("Please fill in all fields with valid numbers.");
-      return;
+  <script>
+    function checkLogin() {
+      const code = document.getElementById("accessCode").value;
+      if (code === "PL2025") {
+        localStorage.setItem("role", "PharmaLab");
+        window.location.href = "pharmalab.html";
+      } else if (code === "CL2025") {
+        localStorage.setItem("role", "Client");
+        window.location.href = "client.html";
+      } else {
+        alert("Invalid access code");
+      }
     }
-
-    const TMC = RW * E;
-    const TotalWorkdays = Math.ceil(I / TMC);
-    const workingDaysPerWeek = 7 - RD;
-    const WeeksNeeded = Math.ceil(TotalWorkdays / workingDaysPerWeek);
-    const PMPD = WeeksNeeded * 7;
-
-    document.getElementById('results').innerHTML = `
-      <h3>Results</h3>
-      <p><strong>Total Maintenance Capacity (TMC):</strong> ${TMC}</p>
-      <p><strong>Total Workdays Needed:</strong> ${TotalWorkdays}</p>
-      <p><strong>Weeks Needed:</strong> ${WeeksNeeded}</p>
-      <p><strong>Total Calendar Days (PMPD):</strong> ${PMPD}</p>
-    `;
-  }
-</script>
-
-    </section>
-
-    <!-- Client User Login -->
-    <section>
-      <h2>Client User Login</h2>
-      <p>This section is designed for clients to request maintenance or reagents.</p>
-
-      <h3>Requests</h3>
-      <ul>
-        <li>
-          <a
-            href="https://forms.gle/UCDRiDoQEpGMmGKdA"
-            target="_blank"
-            >Maintenance Request</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://forms.gle/5ULMTBXxvFugLjG2A"
-            target="_blank"
-            >Reagent Request</a
-          >
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <!-- Gantt Chart Section -->
-<section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #f0fff0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
-  <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
-    Real Time Monitoring Preventive Maintenance Gantt Charts
-  </h2>
-
-  <!-- First Chart -->
-  <div style="overflow-x: auto; margin-bottom: 20px;">
-    <iframe 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSWAmSnBYkPqthPPDGg6Bvy2-SNBbe5GebNLYWav6CibGfodPWmrCLkTE2JbFv9OteCWqGVhcZsegaD/pubchart?oid=1763779633&format=interactive"
-      width="100%" 
-      height="400" 
-      frameborder="0" 
-      style="border: none;">
-    </iframe>
-  </div>
-
-  <!-- Second Chart -->
-  <div style="overflow-x: auto;">
-    <iframe 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSWAmSnBYkPqthPPDGg6Bvy2-SNBbe5GebNLYWav6CibGfodPWmrCLkTE2JbFv9OteCWqGVhcZsegaD/pubchart?oid=1726328523&format=interactive"
-      width="100%" 
-      height="400" 
-      frameborder="0" 
-      style="border: none;">
-    </iframe>
-  </div>
-</section>
-<!-- AI Assistant for Engineers -->
-<section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
-  <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
-    ARTIFICIAL INTELLIGENCE Assistant For BIOMEDICAL MAINTENANCE of Hematology and Biochemistry Instruments
-  </h2>
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-    <label for="ai_instrument">Select Instrument</label>
-    <select id="ai_instrument" style="padding: 10px; border: 1px solid #006400; border-radius: 6px;">
-      <option value="">-- Choose Instrument --</option>
-      <option value="humacount5">Humacount 5</option>
-      <option value="humalyzer3500">Humalyzer 3500</option>
-    </select>
-
-    <label for="ai_question">Your Question</label>
-    <textarea id="ai_question" rows="4" placeholder="What do you want to know?" style="padding: 10px; border: 1px solid #006400; border-radius: 6px;"></textarea>
-
-    <button onclick="askAssistant()" style="background-color: #8b0000; color: white; font-weight: bold; padding: 10px; border: none; border-radius: 6px; cursor: pointer;">
-      Ask Assistant
-    </button>
-
-    <div id="ai_answer" style="white-space: pre-wrap; background: #eaffea; border: 1px solid #006400; border-radius: 6px; padding: 10px; min-height: 60px; margin-top: 10px;">
-      <!-- AI response will appear here -->
-    </div>
-  </div>
-</section>
-
-<script>
-async function askAssistant() {
-  const instrument = document.getElementById("ai_instrument").value.trim();
-  const question = document.getElementById("ai_question").value.trim();
-  const answerBox = document.getElementById("ai_answer");
-
-  if (!instrument || !question) {
-    alert("Please select an instrument and type your question.");
-    return;
-  }
-
-  answerBox.textContent = "Thinking...";
-
-  try {
-    const response = await fetch("https://ai-tzvu.onrender.com/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ instrument, question })
-    });
-
-    const data = await response.json();
-    answerBox.textContent = data.answer || "No relevant answer found.";
-  } catch (error) {
-    console.error("Error:", error);
-    answerBox.textContent = "⚠️ Error: Could not connect to the AI assistant.";
-  }
-}
-</script>
-
-  <footer>
-    <p>Contact us:</p>
-    <a href="https://www.pharmalabrwanda.com" target="_blank">
-     <p>WEBSITE</p>
-     </a>
-
-    <p>  Email: pharmalabkgli@gmail.com </p>
-    <p>  Phone: +250788477537;+250788301997;+250786854200</p>
-    <p>P.O BOX 2564 KIGALI-RWANDA</p>
-    <p>HEAD OFFICES ADDRESS | NYARUGENGE,ST: KN 59, No 24</p>
-    <p>App Designed By Simeon N.</p>
-    <p>ADMIN: CYRIACQUE R.</p>
-    
+  </script>
+</body>
+</html>
