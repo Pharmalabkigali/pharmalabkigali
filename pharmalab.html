@@ -35,6 +35,7 @@
 
     #logoutBtn {
       float: right;
+      font-size: 12px
       margin: 10px 20px 0 0;
       background: var(--red);
       color: white;
@@ -92,16 +93,6 @@
       background-color: var(--red);
     }
 
-    section {
-      background: var(--light-bg);
-      padding: 20px;
-      margin: 20px auto;
-      width: 90%;
-      border: 2px solid var(--green);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);
-    }
-
     #results {
       margin-top: 10px;
       background: #fff;
@@ -123,11 +114,14 @@
   <button id="logoutBtn" onclick="logout()">Logout</button>
 
   <div id="content" style="display: none;">
-    <h1>Welcome PharmaLab User</h1>
+    <p><h1>Welcome to PharmaLab Staff User Page</h1></p>
 
     <!-- Paste your PharmaLab sections here (Management, Planning, AI assistant, etc.) -->
- <section>
-      <h2>PharmaLab User Login</h2>
+ <section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
+  <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
+    PharmaLab User Login
+  </h2>
+    
       <p>
         This section is designed for planning and management within the
         Biomedical Unit at PharmaLab Ltd.
@@ -215,7 +209,10 @@
         </li>
       </ul>
 </section>
-<section>
+<section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
+  <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
+    Preventive Maintenance Calculation Duration Tool
+  </h2>
 
       <!-- Preventive Maintenance Calculation Tool -->
 <div id="preventive-maintenance-calculator">
