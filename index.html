@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>PharmaLab Login</title>
+  <title>PharmaLab App</title>
   <style>
     :root {
-      --green: #006400;
-      --red: #8B0000;
-      --black: #000000;
+      --green: rgb(0,32,0);
+      --red: rgb(88,0,0);
+      --black: rgb(0,0,0);
     }
 
     body {
@@ -145,12 +145,12 @@
         class="logo"
       />
     </div>
-    <h2 id="loginTitle">PharmaLab Web App Login</h2>
+    <h2 id="loginTitle">PharmaLab App</h2>
 
     <select id="userRole">
       <option value="">Select user role</option>
-      <option value="PharmaLab">PharmaLab User</option>
-      <option value="Client">Client User</option>
+      <option value="PharmaLab">PharmaLab Staff</option>
+      <option value="Client">PharmaLab Client</option>
     </select>
 
     <input type="password" id="accessCode" placeholder="Enter access code...">
@@ -167,9 +167,10 @@
   </div>
 
   <div class="footer">
-    📧 Email: <a href="mailto:pharmalabkgli@gmail.com">pharmalabkgli@gmail.com</a> |
-    ☎️ Tel: +250 788 301 997 / +250 788 477 537 / +250 786 854 200 |
-    🏢 HQ: NYARUGENGE, ST: KN 59, No 24, Kigali, Rwanda
+    <p>📧 Email: <a href="mailto:pharmalabkgli@gmail.com">pharmalabkgli@gmail.com</a> |</p>
+    <p>☎️ Tel: +250 788 301 997 / +250 788 477 537 / +250 786 854 200 |</p>
+    <p>P.O BOX 2564 KIGALI-RWANDA</p>
+    <p>🏢 HQ: NYARUGENGE, ST: KN 59, No 24, Kigali, Rwanda</p>
   </div>
 
   <script>
@@ -202,20 +203,20 @@
       if (lang === "fr") {
         title.textContent = "Connexion à l'application PharmaLab";
         roleSelect.options[0].text = "Sélectionnez le rôle";
-        roleSelect.options[1].text = "Utilisateur PharmaLab";
-        roleSelect.options[2].text = "Utilisateur Client";
+        roleSelect.options[1].text = "Le Personnel de PharmaLab";
+        roleSelect.options[2].text = "Le Client de PharmaLab";
         passInput.placeholder = "Entrez le code d'accès...";
       } else if (lang === "rw") {
         title.textContent = "Injira kuri App ya PharmaLab";
         roleSelect.options[0].text = "Hitamo uruhare rwawe";
-        roleSelect.options[1].text = "Umukoresha wa PharmaLab";
-        roleSelect.options[2].text = "Umukiriya";
+        roleSelect.options[1].text = "Umukozi wa PharmaLab";
+        roleSelect.options[2].text = "Umukiriya wa PharmaLab";
         passInput.placeholder = "Andika ijambo ry'ibanga...";
       } else {
         title.textContent = "PharmaLab Web App Login";
         roleSelect.options[0].text = "Select user role";
-        roleSelect.options[1].text = "PharmaLab User";
-        roleSelect.options[2].text = "Client User";
+        roleSelect.options[1].text = "PharmaLab Staff";
+        roleSelect.options[2].text = "PharmaLab Client";
         passInput.placeholder = "Enter access code...";
       }
     }
