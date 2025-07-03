@@ -31,21 +31,23 @@
       font-weight: bold;
       color: var(--green);
       padding: 10px;
-    }
-
+}
+      
     #logoutBtn {
-      float: right;
-      font-size: 12px
-      margin: 10px 20px 0 0;
-      background: var(--red);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  z-index: 1000;
+  transition: background 0.3s;
+}
 
     #logoutBtn:hover {
       background: var(--black);
@@ -114,7 +116,10 @@
   <button id="logoutBtn" onclick="logout()">Logout</button>
 
   <div id="content" style="display: none;">
-    <p><h1>Welcome to PharmaLab Staff User Page</h1></p>
+    <p><h1 style="text-align: center; margin-top: 40px; color: white; font-size: 2rem; text-shadow: 1px 1px 4px var(--green);">
+  Welcome to PharmaLab User 
+</h1>
+</p>
 
     <!-- Paste your PharmaLab sections here (Management, Planning, AI assistant, etc.) -->
  <section style="width: 90%; margin: 0 auto 2rem; padding: 20px; background: #fffaf0; border: 2px solid #006400; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
