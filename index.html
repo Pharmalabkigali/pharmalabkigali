@@ -1,44 +1,79 @@
-<!-- index.html (Login Page) -->
+<!-- index.html (Customized Login Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PharmaLab Login</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #006400, #90ee90);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f0f8ff;
     }
+
     .login-box {
       background: white;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 100, 0, 0.4);
       text-align: center;
-      width: 300px;
+      width: 320px;
     }
-    select, input[type="password"] {
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      width: 180px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      background-color: white;
+      padding: 5px;
+      filter: brightness(1.3) drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #006400;
+    }
+
+    select,
+    input[type="password"] {
       padding: 10px;
       width: 100%;
       margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 1rem;
     }
+
     button {
-      padding: 10px 20px;
       background-color: #006400;
       color: white;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1rem;
       font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #004d00;
     }
@@ -46,6 +81,13 @@
 </head>
 <body>
   <div class="login-box">
+    <div class="logo-container">
+      <img
+        src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
+        alt="PharmaLab Logo"
+        class="logo"
+      />
+    </div>
     <h2>PharmaLab Web App Login</h2>
     <select id="userRole">
       <option value="">Select user role</option>
