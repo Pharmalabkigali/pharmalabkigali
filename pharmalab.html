@@ -355,38 +355,50 @@ async function askAssistant() {
     </iframe>
   </div>
 </section>
-  </div>
-
   <script>
-    const role = localStorage.getItem("role");
-    if (role !== "PharmaLab") {
+  async function checkAuth() {
+    const sessionRole = sessionStorage.getItem("role");
+    if (!sessionRole) {
+      // No session role found, redirect to login
       window.location.href = "index.html";
-    } else {
-      document.getElementById("userRole").textContent = `Logged in as: ${role}`;
-      document.getElementById("content").style.display = "block";
+      return;
     }
 
-    function logout() {
-      localStorage.removeItem("role");
-      window.location.href = "index.html";
-    }
-  </script>
+    // Show role and content
+    document.getElementById("userRole").textContent = `Logged in as: ${sessionRole}`;
+    document.getElementById("content").style.display = "block";
+  }
 
-  </div>
+  function logout() {
+    sessionStorage.removeItem("role");
+    window.location.href = "index.html";
+  }
 
-  <script>
-    const role = localStorage.getItem("role");
-    if (role !== "PharmaLab") {
+  // On page load
+  window.onload = checkAuth;
+</script>
+<script>
+  async function checkAuth() {
+    const sessionRole = sessionStorage.getItem("role");
+    if (!sessionRole) {
+      // No session role found, redirect to login
       window.location.href = "index.html";
-    } else {
-      document.getElementById("userRole").textContent = `Logged in as: ${role}`;
-      document.getElementById("content").style.display = "block";
+      return;
     }
 
-    function logout() {
-      localStorage.removeItem("role");
-      window.location.href = "index.html";
-    }
-  </script>
+    // Show role and content
+    document.getElementById("userRole").textContent = `Logged in as: ${sessionRole}`;
+    document.getElementById("content").style.display = "block";
+  }
+
+  function logout() {
+    sessionStorage.removeItem("role");
+    window.location.href = "index.html";
+  }
+
+  // On page load
+  window.onload = checkAuth;
+</script>
+    
 </body>
 </html>
