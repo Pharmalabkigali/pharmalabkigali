@@ -1,14 +1,121 @@
-<!-- client.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Client User</title>
   <style>
-    body { font-family: Arial; padding: 20px; background: #fff0f5; }
-    #userRole { float: right; font-weight: bold; color: #800000; }
-    #logoutBtn { float: right; margin-left: 20px; background: #8b0000; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    :root {
+      --green: #006400;
+      --red: #8B0000;
+      --black: #000000;
+      --light-bg: #f0fff0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--green), #e6ffe6);
+      background-size: 400% 400%;
+      animation: gradientShift 18s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    #userRole {
+      float: right;
+      font-weight: bold;
+      color: var(--green);
+      padding: 10px;
+    }
+
+    #logoutBtn {
+      float: right;
+      margin: 10px 20px 0 0;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    #logoutBtn:hover {
+      background: var(--black);
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--green);
+    }
+
+    ul li a {
+      color: var(--black);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px;
+      display: inline-block;
+    }
+
+    ul li a:hover {
+      color: var(--red);
+      text-decoration: underline;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid var(--green);
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button[type="button"] {
+      background-color: var(--green);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button[type="button"]:hover {
+      background-color: var(--red);
+    }
+
+    section {
+      background: var(--light-bg);
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      border: 2px solid var(--green);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);
+    }
+
+    #results {
+      margin-top: 10px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid var(--green);
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 400px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -17,8 +124,7 @@
 
   <div id="content" style="display: none;">
     <h1>Welcome Client User</h1>
-    <!-- Paste all your Client HTML section here -->
-    <!-- Client User Login -->
+    <!-- Paste all your client-specific tools, forms, sheets, etc. here -->
     <section>
       <h2>Client User Login</h2>
       <p>This section is designed for clients to request maintenance or reagents.</p>
