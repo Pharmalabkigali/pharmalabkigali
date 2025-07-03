@@ -202,7 +202,7 @@
     <p>🏢 HQ: NYARUGENGE, ST: KN 59, No 24, Kigali, Rwanda</p>
   </footer>
 <script>
- async function checkLogin() {
+async function checkLogin() {
   const code = document.getElementById("accessCode").value;
   const role = document.getElementById("userRole").value;
 
@@ -211,28 +211,27 @@
     return;
   }
 
-  try {
-    const response = await fetch("https://ai-tzvu.onrender.com/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ role, code })
-    });
+  const response = await fetch("https://ai-tzvu.onrender.com/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ role, code })
+  });
 
-    const data = await response.json();
+  const result = await response.json();
 
-    if (data.role === "pharmalab") {
-      sessionStorage.setItem("role", "PharmaLab");
-      window.location.href = "pharmalab.html";
-    } else if (data.role === "client") {
-      sessionStorage.setItem("role", "Client");
-      window.location.href = "client.html";
-    } else {
-      alert(data.error || "Invalid login");
-    }
-  } catch (error) {
-    alert("Login failed: " + error);
+  if (result.role === "pharmalab") {
+    sessionStorage.setItem("role", "PharmaLab");
+    window.location.href = "pharmalab.html";
+  } else if (result.role === "client") {
+    sessionStorage.setItem("role", "Client");
+    window.location.href = "client.html";
+  } else {
+    alert("Invalid role or access code");
   }
 }
+
 
 
     function changeLanguage() {
