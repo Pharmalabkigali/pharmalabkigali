@@ -141,19 +141,29 @@
     </section>
   </div>
 
-  <script>
-    const role = localStorage.getItem("role");
-    if (role !== "Client") {
-      window.location.href = "index.html";
-    } else {
-      document.getElementById("userRole").textContent = `Logged in as: ${role}`;
-      document.getElementById("content").style.display = "block";
+
+    <script>
+  async function checkAuth() {
+    const sessionRole = sessionStorage.getItem("role");
+    if (sessionRole !== "Client") {
+      window.location.href = "index.html"; // Redirect if not client
+      return;
     }
 
-    function logout() {
-      localStorage.removeItem("role");
-      window.location.href = "index.html";
-    }
-  </script>
+    // Show role and content
+    document.getElementById("userRole").textContent = `Logged in as: ${sessionRole}`;
+    document.getElementById("content").style.display = "block";
+  }
+
+  function logout() {
+    sessionStorage.removeItem("role");
+    window.location.href = "index.html";
+  }
+
+  // Run check on page load
+  window.onload = checkAuth;
+</script>
+
+  
 </body>
 </html>
