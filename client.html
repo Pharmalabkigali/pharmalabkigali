@@ -1,0 +1,61 @@
+<!-- client.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client User</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #fff0f5; }
+    #userRole { float: right; font-weight: bold; color: #800000; }
+    #logoutBtn { float: right; margin-left: 20px; background: #8b0000; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <p id="userRole"></p>
+  <button id="logoutBtn" onclick="logout()">Logout</button>
+
+  <div id="content" style="display: none;">
+    <h1>Welcome Client User</h1>
+    <!-- Paste all your Client HTML section here -->
+    <!-- Client User Login -->
+    <section>
+      <h2>Client User Login</h2>
+      <p>This section is designed for clients to request maintenance or reagents.</p>
+
+      <h3>Requests</h3>
+      <ul>
+        <li>
+          <a
+            href="https://forms.gle/UCDRiDoQEpGMmGKdA"
+            target="_blank"
+            >Maintenance Request</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://forms.gle/5ULMTBXxvFugLjG2A"
+            target="_blank"
+            >Reagent Request</a
+          >
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const role = localStorage.getItem("role");
+    if (role !== "Client") {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("userRole").textContent = `Logged in as: ${role}`;
+      document.getElementById("content").style.display = "block";
+    }
+
+    function logout() {
+      localStorage.removeItem("role");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
