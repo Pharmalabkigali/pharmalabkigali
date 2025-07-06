@@ -1,9 +1,169 @@
-<!-- ✅ Only the fixed CSS & JS parts are shown here for clarity -->
-<!-- ✅ Replace your #loading-overlay and JS with this -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PharmaLab App</title>
+  <style>
+    :root {
+      --green: rgb(0, 64, 0);
+      --red: rgb(88, 0, 0);
+      --black: rgb(0, 0, 0);
+    }
 
-<!-- 🔧 FIXED LOADING SPINNER STYLE -->
-<style>
-  #loading-overlay {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--green), #f0fff0);
+      background-size: 400% 400%;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 100, 0, 0.4);
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+      border: 2px solid var(--green);
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      width: 160px;
+      border-radius: 10px;
+      padding: 6px;
+      background-color: white;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    h2 {
+      color: var(--black);
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="password"],
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    select,
+    input[type="password"] {
+      border: 1.5px solid var(--red);
+      background: #fffafa;
+      color: var(--black);
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    select:focus,
+    input[type="password"]:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 5px var(--green);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--red);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--green);
+    }
+
+    .language-select {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--black);
+    }
+
+    .language-select select {
+      border-color: var(--green);
+      background: #f5fff5;
+    }
+
+    footer {
+      background-color: var(--black);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.85rem;
+      border-top: 3px solid var(--red);
+      width: 100%;
+    }
+
+    footer a {
+      color: #90ee90;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: var(--red);
+    }
+
+    @media (max-width: 400px) {
+      .login-box {
+        padding: 20px;
+      }
+
+      .logo {
+        width: 140px;
+      }
+    }
+
+    /* Loading Overlay Styles */
+   #loading-overlay {
     display: none; /* hidden by default */
     position: fixed;
     top: 0;
@@ -39,10 +199,49 @@
       transform: rotate(360deg);
     }
   }
-</style>
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="login-box">
+      <div class="logo-container">
+        <img
+          src="https://www.eahealth.org/sites/www.eahealth.org/files/styles/grid-3-wide-logo/public/content/organisation/logos/2018-05-15/PharmaLab%20Ltd.jpg?itok=KEkyzyFt&timestamp=1526379046"
+          alt="PharmaLab Logo"
+          class="logo"
+        />
+      </div>
+      <h2 id="loginTitle">PharmaLab App</h2>
 
-<!-- ✅ This goes at the bottom, inside <body>, before </body> -->
-<div id="loading-overlay">
+      <select id="userRole">
+        <option value="">Select user role</option>
+        <option value="PharmaLab">PharmaLab Staff</option>
+        <option value="Client">PharmaLab Client</option>
+      </select>
+
+      <input type="password" id="accessCode" placeholder="Enter access code...">
+      <button onclick="checkLogin()">Login</button>
+
+      <div class="language-select">
+        🌐 <label for="langSelect">Language:</label>
+        <select id="langSelect" onchange="changeLanguage()">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="rw">Kinyarwanda</option>
+        </select>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>📧 Email: <a href="mailto:pharmalabkgli@gmail.com">pharmalabkgli@gmail.com</a></p>
+    <p>☎️ Tel: +250 788 301 997 / +250 788 477 537 / +250 786 854 200</p>
+    <p>P.O BOX 2564 KIGALI-RWANDA</p>
+    <p>🏢 HQ: NYARUGENGE, ST: KN 59, No 24, Kigali, Rwanda</p>
+  </footer>
+
+ <div id="loading-overlay">
   <div class="spinner"></div>
   Logging in, please wait...
 </div>
@@ -114,3 +313,5 @@
     }
   }
 </script>
+</body>
+</html>
