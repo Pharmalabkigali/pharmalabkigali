@@ -144,9 +144,62 @@
         </li>
       </ul>
     </section>
+
+
+
+
+<section style="width: 90%; margin: 2rem auto; padding: 20px; 
+        background: #fffaf0; border: 2px solid #006400; border-radius: 10px; 
+        box-shadow: 0 0 10px rgba(0, 100, 0, 0.2);">
+  <h2 style="text-align: center; color: #006400; border-bottom: 3px solid #8b0000; padding-bottom: 0.4rem;">
+    Remote Support Panel | Support à Distance
+  </h2>
+
+  <p>Select the device you want support on and click "Start Remote Session".</p>
+
+  <div class="remote-support-container" style="display: flex; flex-direction: column; gap: 15px;">
+    <!-- Example device -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #006400; border-radius: 6px;">
+      <span>Hematology PC 1</span>
+      <button onclick="launchRustDesk('123456789')" 
+              style="background-color: #8b0000; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer;">
+        Start Remote Session
+      </button>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #006400; border-radius: 6px;">
+      <span>Biochemistry PC 2</span>
+      <button onclick="launchRustDesk('987654321')" 
+              style="background-color: #8b0000; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer;">
+        Start Remote Session
+      </button>
+    </div>
+
+    <!-- Add more devices as needed -->
   </div>
+</section>
+    
+    
+  </div>
+  
 
 
+<script>
+  function launchRustDesk(rustdeskID) {
+    // RustDesk URL scheme
+    const url = `rustdesk://connect/${rustdeskID}`;
+    window.location.href = url;
+
+    // Optional: alert if browser does not support URL scheme
+    setTimeout(() => {
+      alert("If RustDesk did not open automatically, make sure it is installed on your PC.");
+    }, 1500);
+  }
+</script>
+
+  
+
+  
     <script>
   async function checkAuth() {
     const sessionRole = sessionStorage.getItem("role");
@@ -172,4 +225,5 @@
   
 </body>
 </html>
+
 
